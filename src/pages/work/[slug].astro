@@ -1,0 +1,138 @@
+---
+import '../../styles/global.css';
+
+export function getStaticPaths() {
+  return ['wow-payments', 'virtusa'].map(slug => ({ params: { slug } }));
+}
+
+function getWorkData(slug: string) {
+  const d: Record<string, any> = {
+    'wow-payments': {
+      company: 'WOW Payments',
+      role: 'Software Engineering Intern (Data & Backend)',
+      period: 'May – Aug 2025',
+      location: 'New York, USA',
+      summary: 'Shipped production-grade CRM platform improving task execution by 41%. Reduced client onboarding from 3 days to 12 hours. Built orchestration pipelines lifting delivery accuracy to 98%.',
+      domains: ['Backend Engineering', 'Data Pipelines', 'CRM Systems', 'API Design', 'Database Optimization'],
+      tags: ['Python', 'PHP', 'SQL', 'REST APIs', 'CI/CD'],
+      projects: [
+        { title: 'CRM Platform', tech: ['Python', 'PHP', 'SQL'], desc: 'Production-grade CRM improving task execution throughput by 41%.' },
+        { title: 'Client Onboarding Pipeline', tech: ['Python', 'REST APIs'], desc: 'Reduced onboarding time from 3 days to 12 hours via backend optimization.' },
+        { title: 'Orchestration System', tech: ['Python', 'SQL', 'Cron'], desc: 'Delivery orchestration pipelines lifting accuracy to 98%.' },
+      ],
+    },
+    'virtusa': {
+      company: 'Virtusa',
+      role: 'AI & ML Engineering Intern',
+      period: 'Aug – Dec 2023',
+      location: 'Chennai, India',
+      summary: 'Re-architected ETL pipelines scaling ingestion from 35% to 96%. Built NLP systems for ESG sentiment analysis across 300+ companies in a distributed GCP environment.',
+      domains: ['ETL Engineering', 'Machine Learning', 'NLP', 'GCP Infrastructure', 'ESG Analytics'],
+      tags: ['Python', 'GCP', 'BigQuery', 'NLP', 'ETL'],
+      projects: [
+        { title: 'ETL Pipeline Re-architecture', tech: ['Python', 'GCP', 'BigQuery'], desc: 'Scaled data ingestion throughput from 35% to 96% capacity.' },
+        { title: 'ESG NLP Sentiment System', tech: ['Python', 'NLP', 'Transformers'], desc: 'Sentiment analysis across 300+ companies for ESG reporting.' },
+        { title: 'Distributed Data Platform', tech: ['GCP Pub/Sub', 'Cloud Functions', 'BigQuery'], desc: 'GCP-native distributed architecture for real-time data processing.' },
+      ],
+    },
+  };
+  return d[slug];
+}
+
+const { slug } = Astro.params;
+const job = getWorkData(slug);
+if (!job) return Astro.redirect('/');
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={`${job.role} at ${job.company} — Shreeram Sankar`} />
+  <title>{job.role} at {job.company} — The Shreeram Chronicle</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" />
+</head>
+<body class="bg-paper">
+
+  <nav class="sticky top-0 z-50 bg-paper border-b-2 border-ink no-print">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between h-9">
+      <div class="flex items-center gap-4">
+        <a href="/" class="font-mono text-caption uppercase tracking-widest text-ink hover:text-ink-light transition-colors">← Back to Home</a>
+        <span class="text-ink-faded hidden sm:block">·</span>
+        <span class="font-mono text-caption text-ink-faded hidden sm:block">{job.company}</span>
+      </div>
+      <a href="/" class="font-mono text-caption uppercase tracking-widest text-ink-faded hover:text-ink transition-colors hidden md:block">Home</a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pb-24">
+
+    <!-- HERO SECTION -->
+    <header class="pt-10 pb-8 border-b-2 border-ink">
+      <span class="section-label mb-4 block">Work Experience</span>
+      <h1 class="font-display font-black text-ink leading-tight mb-2" style="font-size: clamp(2rem, 5vw, 3.5rem);">{job.role}</h1>
+      <p class="font-mono text-caption uppercase tracking-wider text-ink mb-1">{job.company} · {job.location}</p>
+      <p class="font-mono text-caption text-ink-faded mb-6">{job.period}</p>
+      <p class="font-serif italic text-body-print text-ink-light mb-6 max-w-3xl text-lg">{job.summary}</p>
+      <div class="flex flex-wrap gap-2">
+        {job.tags.map((tag: string) => <span class="font-mono text-caption border border-ink px-2 py-0.5 text-ink text-xs">{tag}</span>)}
+      </div>
+    </header>
+
+    <!-- ROLE DESCRIPTION + DOMAINS -->
+    <section class="py-8 border-b-2 border-ink">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+        <div class="md:border-r border-ink pr-0 md:pr-8 pb-8 md:pb-0">
+          <div class="rule-thick mb-4"></div>
+          <p class="section-label font-bold mb-3">Role Description</p>
+          <p class="font-serif text-body-print text-ink-light leading-relaxed mb-4">{job.summary}</p>
+          <p class="font-serif text-body-print text-ink-light">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </div>
+        <div class="pl-0 md:pl-8 pt-8 md:pt-0 border-t md:border-t-0 border-ink">
+          <div class="rule-thick mb-4"></div>
+          <p class="section-label font-bold mb-3">Domains Worked In</p>
+          <div class="flex flex-col gap-2">
+            {job.domains.map((domain: string) => (
+              <div class="border-2 border-ink px-4 py-3 bg-column-bg">
+                <p class="font-mono text-caption uppercase tracking-wider text-ink text-sm">{domain}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS WORKED ON -->
+    <section class="py-8 border-b-2 border-ink">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="section-label font-bold">Projects at {job.company}</span>
+        <div class="flex-1 border-t border-ink"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {job.projects.map((p: any, i: number) => (
+          <div class="border-2 border-ink p-5 bg-paper">
+            <p class="font-display font-bold text-ink mb-2">{p.title}</p>
+            <p class="font-serif text-body-print text-ink-light text-sm mb-3">{p.desc}</p>
+            <div class="flex flex-wrap gap-1">
+              {p.tech.map((t: string) => <span class="font-mono text-xs border border-ink px-2 py-0.5 text-ink">{t}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FOOTER NAV -->
+    <section class="pt-8 flex items-center justify-between flex-wrap gap-4">
+      <a href="/" class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all">← Back to Portfolio</a>
+      <a href="/" class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all">Back to Portfolio</a>
+    </section>
+
+  </main>
+
+</body>
+</html>

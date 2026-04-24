@@ -1,0 +1,134 @@
+---
+import '../../styles/global.css';
+
+export function getStaticPaths() {
+  return ['shipping-ai-systems', 'autonomous-agents'].map(slug => ({ params: { slug } }));
+}
+
+function getBlogData(slug: string) {
+  const d: Record<string, any> = {
+    'shipping-ai-systems': {
+      title: "Shipping AI Systems in Days, Not Months",
+      headline: "Shipping AI Systems in Days, Not Months: A Practitioner's Playbook",
+      date: 'April 2026', readTime: '8 min read',
+      category: 'ENGINEERING',
+      excerpt: 'How disciplined sprint execution, cloud-native architecture, and clear architectural ownership compress deployment timelines by 10x.',
+      tags: ['AI Engineering', 'DevOps', 'Velocity', 'Startups'],
+      sections: [
+        {
+          heading: 'The Problem with Traditional Timelines',
+          body: 'Most teams follow a predictable bottleneck: design phase stretches, implementation stalls on dependency chains, testing happens at the end, and deployment becomes a firefighting exercise. This cycle repeats endlessly, compressing months of calendar time into marginal output.',
+        },
+        {
+          heading: 'The System That Works',
+          body: 'Ruthless scope definition before writing a single line of code. Vertical slices over horizontal layers — build complete thin features end-to-end rather than finishing the entire backend before touching the frontend. Cloud-native by default: use managed services instead of managing infrastructure yourself.',
+        },
+        {
+          heading: 'Continuous Integration as Law',
+          body: 'Every commit must deploy. Not every sprint, not every week — every commit. This forces small, composable changes, surfaces integration problems immediately, and creates a culture of confidence rather than anxiety around releases.',
+        },
+        {
+          heading: 'Real Impact',
+          body: 'At WOW Payments, applying these principles reduced client onboarding from 3 days to 12 hours. A CRM platform that would typically take three months was production-ready in weeks. In 2026, competitive advantage is velocity.',
+        },
+      ],
+    },
+    'autonomous-agents': {
+      title: 'Building Autonomous Agents with Local LLMs',
+      headline: 'Building Autonomous Agents with Local LLMs and Geospatial Pipelines',
+      date: 'March 2026', readTime: '10 min read',
+      category: 'AI',
+      excerpt: 'Deep dive into designing reasoning agents that fuse external data sources for autonomous decision-making in production.',
+      tags: ['AI Agents', 'LLMs', 'Architecture', 'Data Engineering'],
+      sections: [
+        {
+          heading: 'The Architecture of Autonomous Agents',
+          body: 'A production agent needs four components: a reasoning engine (LLM or local model), external data access (APIs, databases, geospatial systems), an action execution layer (webhooks, CLI, internal tools), and monitoring with fallback mechanisms.',
+        },
+        {
+          heading: 'The Real Challenge: Data Integration',
+          body: 'The hardest part is not the LLM. It is orchestrating clean, fast data access. Real estate agents need tri-state zoning data, NYC transit APIs, market records — all in milliseconds. Without fast pipelines, the agent reasoning becomes a bottleneck rather than an accelerator.',
+        },
+        {
+          heading: 'Best Practices from Production Systems',
+          body: 'Cache aggressively at every layer. Parallelize independent data fetches wherever possible. Build circuit breakers for failing external services. Log every agent decision for debugging and audit purposes. These practices separate demo agents from production-grade systems.',
+        },
+        {
+          heading: 'Why Agents Beat Chatbots',
+          body: 'Chatbots respond. Agents reason, act, and iterate. The difference compounds: a chatbot answers a question about real estate; an agent scouts 50 properties, rank-orders them by investment thesis, and delivers a structured report — fully autonomously.',
+        },
+      ],
+    },
+  };
+  return d[slug];
+}
+
+const { slug } = Astro.params;
+const blog = getBlogData(slug);
+if (!blog) return Astro.redirect('/');
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={blog.excerpt} />
+  <title>{blog.title} — The Shreeram Chronicle</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" />
+</head>
+<body class="bg-paper">
+
+  <nav class="sticky top-0 z-50 bg-paper border-b-2 border-ink no-print">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between h-9">
+      <div class="flex items-center gap-4">
+        <a href="/blogs" class="font-mono text-caption uppercase tracking-widest text-ink hover:text-ink-light transition-colors">← All Articles</a>
+        <span class="text-ink-faded hidden sm:block">·</span>
+        <span class="font-mono text-caption text-ink-faded hidden sm:block">{blog.category}</span>
+      </div>
+      <a href="/" class="font-mono text-caption uppercase tracking-widest text-ink-faded hover:text-ink transition-colors hidden md:block">Home</a>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 pb-24">
+
+    <!-- HERO SECTION -->
+    <header class="pt-10 pb-8 border-b-2 border-ink">
+      <div class="flex items-center justify-between gap-4 mb-4 flex-wrap">
+        <span class="section-label">{blog.category}</span>
+        <span class="font-mono text-caption text-ink-faded">{blog.readTime}</span>
+      </div>
+      <h1 class="font-display font-black text-ink leading-tight mb-4 text-balance" style="font-size: clamp(2rem, 5vw, 3.5rem);">{blog.headline}</h1>
+      <p class="font-serif italic text-body-print text-ink-light mb-6 text-lg max-w-2xl">{blog.excerpt}</p>
+      <div class="flex items-center justify-between border-t border-b border-ink py-3 flex-wrap gap-2">
+        <span class="font-mono text-caption text-ink-faded uppercase tracking-wider">By Shreeram Sankar · {blog.date}</span>
+        <div class="flex flex-wrap gap-2">
+          {blog.tags.map((tag: string) => <span class="font-mono text-caption border border-ink px-2 py-0.5 text-ink text-xs">{tag}</span>)}
+        </div>
+      </div>
+    </header>
+
+    <!-- ARTICLE BODY -->
+    <section class="py-8 border-b-2 border-ink">
+      <div class="space-y-8">
+        {blog.sections.map((section: any) => (
+          <div class="border-b border-ink pb-8 last:border-0 last:pb-0">
+            <h2 class="font-display font-bold text-ink mb-4" style="font-size: 1.5rem;">{section.heading}</h2>
+            <p class="font-serif text-body-print text-ink-light leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FOOTER NAV -->
+    <section class="pt-8 flex items-center justify-between flex-wrap gap-4">
+      <a href="/blogs" class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all">← All Articles</a>
+      <a href="/" class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all">Back to Portfolio</a>
+    </section>
+
+  </main>
+
+</body>
+</html>
