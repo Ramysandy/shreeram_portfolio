@@ -1,6 +1,6 @@
 ---
 import '../../styles/global.css';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 export function getStaticPaths() {
   return ['3ducate', 'siteiq', 'pinpoint', 'piggilytics', 'dealscout', 'covpred', 'visionsentinel', 'veridion-x'].map(slug => ({ params: { slug } }));
@@ -151,7 +151,7 @@ if (!project) return Astro.redirect('/');
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={`${project.title} — ${project.overview}`} />
   <title>{project.title} — The Shreeram Chronicle</title>
-  <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+  <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" />
@@ -161,11 +161,11 @@ if (!project) return Astro.redirect('/');
   <nav class="sticky top-0 z-50 bg-paper border-b-2 border-ink no-print">
     <div class="max-w-5xl mx-auto px-4 flex items-center justify-between h-9">
       <div class="flex items-center gap-4">
-        <a href={`${base}projects`} class="font-mono text-caption uppercase tracking-widest text-ink hover:text-ink-light transition-colors">← All Projects</a>
+        <a href={`${base}/projects`} class="font-mono text-caption uppercase tracking-widest text-ink hover:text-ink-light transition-colors">← All Projects</a>
         <span class="text-ink-faded hidden sm:block">·</span>
         <span class="font-mono text-caption text-ink-faded hidden sm:block">{project.category}</span>
       </div>
-      <a href={base} class="font-mono text-caption uppercase tracking-widest text-ink-faded hover:text-ink transition-colors hidden md:block">Home</a>
+      <a href={base + '/'} class="font-mono text-caption uppercase tracking-widest text-ink-faded hover:text-ink transition-colors hidden md:block">Home</a>
     </div>
   </nav>
 
@@ -268,8 +268,8 @@ if (!project) return Astro.redirect('/');
 
     <!-- FOOTER NAV -->
     <section class="pt-8 flex items-center justify-between flex-wrap gap-4">
-      <a href={`${base}projects`} class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all">← All Projects</a>
-      <a href={base} class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all">Back to Portfolio</a>
+      <a href={`${base}/projects`} class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all">← All Projects</a>
+      <a href={base + '/'} class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all">Back to Portfolio</a>
     </section>
 
   </main>

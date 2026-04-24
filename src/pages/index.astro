@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const today = new Date();
 const edition = today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
@@ -129,7 +129,7 @@ const experience = [
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Shreeram Sankar — AI Builder, Full-Stack Engineer, Rapid Prototyper. Portfolio." />
   <title>The Shreeram Chronicle — AI Builder & Engineer</title>
-  <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+  <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" />
@@ -235,7 +235,7 @@ const experience = [
         <!-- Recent Articles CTA Button -->
         <div class="border-2 border-ink p-4 mb-4 bg-paper text-center">
           <p class="section-label mb-3 font-bold">Keep Reading</p>
-          <a href={`${base}blogs`} class="font-display font-bold text-ink border-b-2 border-ink hover:bg-column-bg px-3 py-2 inline-block transition-all">
+          <a href={`${base}/blogs`} class="font-display font-bold text-ink border-b-2 border-ink hover:bg-column-bg px-3 py-2 inline-block transition-all">
             Check out my articles
           </a>
           <p class="text-xs text-ink-faded mt-3 italic">Shipping AI Systems in Days, Not Months</p>
@@ -243,7 +243,7 @@ const experience = [
 
         <!-- Article Image -->
         <div class="border-2 border-ink mb-4 overflow-hidden">
-          <img src={`${base}hero-image.png`} alt="Articles" class="w-full h-48 object-cover" />
+          <img src={`${base}/hero-image.png`} alt="Articles" class="w-full h-48 object-cover" />
         </div>
 
         <!-- Education box -->
@@ -281,7 +281,7 @@ const experience = [
             <h3 class="font-display font-bold text-ink leading-tight mb-0.5" style="font-size:1.3rem;">{job.role}</h3>
             <p class="font-mono text-caption uppercase tracking-wider text-ink mb-2">{job.company} · {job.location}</p>
             <p class="font-serif text-body-print text-ink-light mb-3 italic">{job.gist}</p>
-            <a href={`${base}work/${job.slug}`} class="read-more-btn">View Full Details →</a>
+            <a href={`${base}/work/${job.slug}`} class="read-more-btn">View Full Details →</a>
           </div>
         ))}
       </div>
@@ -312,7 +312,7 @@ const experience = [
             <div class="flex flex-wrap gap-1 mt-auto">
               {p.tags.map(tag => <span class="tag-badge">{tag}</span>)}
             </div>
-            <a href={`${base}award/${p.slug}`} class="read-more-btn">Full Case Study →</a>
+            <a href={`${base}/award/${p.slug}`} class="read-more-btn">Full Case Study →</a>
           </article>
         ))}
       </div>
@@ -341,14 +341,14 @@ const experience = [
               <div class="flex flex-wrap gap-1 mb-3">
                 {p.tags.map((tag: string) => <span class="tag-badge">{tag}</span>)}
               </div>
-              <a href={`${base}project/${p.slug}`} class="font-mono text-caption uppercase tracking-wide text-ink border-b-2 border-ink hover:text-ink-light transition-colors inline-block">View Project →</a>
+              <a href={`${base}/project/${p.slug}`} class="font-mono text-caption uppercase tracking-wide text-ink border-b-2 border-ink hover:text-ink-light transition-colors inline-block">View Project →</a>
             </div>
           </article>
         ))}
       </div>
 
       <div class="text-center border-t border-ink pt-6">
-        <a href={`${base}projects`} class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all duration-200 inline-block">
+        <a href={`${base}/projects`} class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all duration-200 inline-block">
           ▶ View All Projects
         </a>
       </div>
