@@ -124,7 +124,7 @@ if (!award) return Astro.redirect('/');
         <div class="carousel-track flex h-full" style="transition:transform 0.5s ease-in-out;">
           {award.images.map((img: string, i: number) => (
             <div class="carousel-slide flex-shrink-0 w-full h-full">
-              <img src={`${base}${img.slice(1)}`} class="w-full h-full object-cover" alt={`${award.title} screenshot ${i + 1}`} />
+              <img src={`${base}/${img.slice(1)}`} class="w-full h-full object-cover" alt={`${award.title} screenshot ${i + 1}`} />
             </div>
           ))}
         </div>
