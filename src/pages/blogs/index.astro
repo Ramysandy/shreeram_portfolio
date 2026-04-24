@@ -1,5 +1,6 @@
 ---
 import '../../styles/global.css';
+const base = import.meta.env.BASE_URL;
 
 const today = new Date();
 
@@ -29,7 +30,7 @@ const blogs = [
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>All Articles — The Shreeram Chronicle</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" />
@@ -39,7 +40,7 @@ const blogs = [
 
   <nav class="sticky top-0 z-50 bg-paper border-b-2 border-ink no-print">
     <div class="max-w-4xl mx-auto px-4 flex items-center justify-between h-9">
-      <a href="/" class="font-mono text-caption uppercase tracking-widest text-ink hover:text-ink-light transition-colors">
+      <a href={base} class="font-mono text-caption uppercase tracking-widest text-ink hover:text-ink-light transition-colors">
         ← Back to Portfolio
       </a>
       <span class="font-mono text-caption text-ink-faded hidden md:block" style="font-size: 0.65rem;">© {today.getFullYear()}</span>
@@ -66,7 +67,7 @@ const blogs = [
             <span class="dateline">{blog.readTime}</span>
           </div>
           
-          <a href={`/blog/${blog.slug}`} class="group">
+          <a href={`${base}blog/${blog.slug}`} class="group">
             <h2 class="font-display font-bold text-ink mb-3 leading-tight group-hover:text-ink-light transition-colors" style="font-size: 1.75rem;">
               {blog.title}
             </h2>
@@ -80,7 +81,7 @@ const blogs = [
             <span class="font-mono text-caption text-ink-faded uppercase tracking-wider">
               {blog.date}
             </span>
-            <a href={`/blog/${blog.slug}`} class="font-mono text-caption uppercase tracking-widest border border-ink px-3 py-1 text-ink hover:bg-ink hover:text-paper transition-all">
+            <a href={`${base}blog/${blog.slug}`} class="font-mono text-caption uppercase tracking-widest border border-ink px-3 py-1 text-ink hover:bg-ink hover:text-paper transition-all">
               Read →
             </a>
           </div>
@@ -90,7 +91,7 @@ const blogs = [
 
     <!-- Footer Link -->
     <div class="text-center">
-      <a href="/" class="font-mono text-caption uppercase tracking-widest border border-ink px-4 py-2 text-ink hover:bg-ink hover:text-paper transition-all inline-block">
+      <a href={base} class="font-mono text-caption uppercase tracking-widest border border-ink px-4 py-2 text-ink hover:bg-ink hover:text-paper transition-all inline-block">
         ← Back to Portfolio
       </a>
     </div>

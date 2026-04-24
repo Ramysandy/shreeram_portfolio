@@ -1,5 +1,6 @@
 ---
 import '../../styles/global.css';
+const base = import.meta.env.BASE_URL;
 
 const projects = [
   {
@@ -59,7 +60,7 @@ const projects = [
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="All Projects — Shreeram Sankar's AI & Full-Stack Engineering Work" />
   <title>All Projects — The Shreeram Chronicle</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" />
@@ -69,7 +70,7 @@ const projects = [
   <nav class="sticky top-0 z-50 bg-paper border-b-2 border-ink no-print">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-9">
       <div class="flex items-center gap-6">
-        <a href="/" class="font-mono text-caption uppercase tracking-widest text-ink hover:text-ink-light transition-colors">← Back Home</a>
+        <a href={base} class="font-mono text-caption uppercase tracking-widest text-ink hover:text-ink-light transition-colors">← Back Home</a>
         <span class="text-ink-faded">·</span>
         <span class="font-mono text-caption uppercase tracking-widest text-ink-faded">All Projects</span>
       </div>
@@ -101,7 +102,7 @@ const projects = [
           <!-- Thumbnail -->
           <div class="w-full h-48 border-b-2 border-ink overflow-hidden bg-column-bg">
             {project.thumb
-              ? <img src={project.thumb} class="w-full h-full object-cover" alt={project.headline} />
+              ? <img src={`${base}${project.thumb.slice(1)}`} class="w-full h-full object-cover" alt={project.headline} />
               : <div class="w-full h-full flex items-center justify-center"><span class="font-mono text-xs text-ink-faded">[ Image ]</span></div>
             }
           </div>
@@ -131,7 +132,7 @@ const projects = [
               ))}
             </div>
 
-            <a href={`/project/${project.slug}`} class="font-mono text-caption uppercase tracking-wider text-ink border-b-2 border-ink hover:text-ink-light transition-colors inline-block mt-auto">
+            <a href={`${base}project/${project.slug}`} class="font-mono text-caption uppercase tracking-wider text-ink border-b-2 border-ink hover:text-ink-light transition-colors inline-block mt-auto">
               View Project →
             </a>
           </div>
@@ -141,7 +142,7 @@ const projects = [
 
     <!-- FOOTER CTA -->
     <section class="mt-12 pt-8 border-t-2 border-ink text-center">
-      <a href="/" class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all duration-200 inline-block">
+      <a href={base} class="font-mono text-caption uppercase tracking-widest border-2 border-ink px-6 py-3 hover:bg-ink hover:text-paper transition-all duration-200 inline-block">
         ← Back to Portfolio
       </a>
     </section>
